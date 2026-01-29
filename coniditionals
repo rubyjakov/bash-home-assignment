@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+file=$1
+
+if [[ -f $file ]]; then
+	echo "Starting check on $file"
+fi
+
+# כאן אנחנו שומרים את התוצאה
+RESULT= $(awk '
+{
+    if ($0 == "begun") {
+        start[$7] = $2
+    }
+    
+    if ($0 == "done") {
+        
+        id = $8
+        duration = $2 - start[id]
+        
+        if (duration < min) {
+            min = duration
+        }
+    }
+}
+END { print min }' exam.log)
+
+echo "The result is: ${RESULT} ms"

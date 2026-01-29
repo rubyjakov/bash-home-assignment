@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# 1. ספירת כל הקבצים בתיקייה ושמירה במשתנה
+COUNT=$(ls | wc -l)
+
+# 2. בדיקה אם המספר גדול מ-3
+if [[ $COUNT -gt 3 ]]; then
+	echo "Warning: Too many files ($COUNT)!"
+elif [[ $COUNT -eq 1 ]]; then
+	echo "Perfect you have exactly one file"
+else
+	echo "You have $COUNT files, which is fine"
+fi

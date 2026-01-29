@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+clean_empty() {
+	for file in "$@"; do
+		if [[ -s "$file" ]]; then
+			echo "skipping $file (it has data)"
+		else
+			echo "deleting $file (it is empty)"
+			rm "$file"
+		fi
+	done
+}
+
+clean_empty
